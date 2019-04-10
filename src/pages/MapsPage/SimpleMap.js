@@ -103,23 +103,12 @@ class SimpleMap extends React.Component {
       loadModules([
         'esri/layers/GraphicsLayer',
         'esri/widgets/Search',
-        'esri/widgets/Sketch',
         'esri/widgets/LayerList'
       ])
       .then(([
-        GraphicLayer,
         Search,
-        Sketch, 
         LayerList 
       ]) => {
-        const gLayer = new GraphicLayer({title:'Sketch Layer'}); 
-        map.add(gLayer);
-
-        const sketch = new Sketch({
-          layer: gLayer,
-          view: view
-        })
-
         const layerlist = new LayerList({
           view: view,
           listItemCreatedFunction: function (event) {
@@ -151,7 +140,6 @@ class SimpleMap extends React.Component {
         view.ui.add(searchWidget, {
           position: 'top-left'
         })
-        view.ui.add(sketch, "bottom-right")
         view.ui.add(layerlist, "top-right")
         view.ui.move("zoom", "bottom-left")
 
