@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import cx from 'classnames';
 import { setMobileNavVisibility } from '../../reducers/Layout';
 import { withRouter } from 'react-router-dom';
+import LoadingScreen from 'react-loading-screen'
 
 import Header from './Header';
 import Footer from './Footer';
@@ -22,40 +23,73 @@ import Charts from '../Charts';
 import Calendar from '../Calendar';
 import Tables from '../Tables';
 
-const Main = ({
-  mobileNavVisibility,
-  hideMobileMenu,
-  history
-}) => {
-  history.listen(() => {
-    if (mobileNavVisibility === true) {
-      hideMobileMenu();
-    }
-  });
-  return (
-    <div className={cx({
-      'nav-open': mobileNavVisibility === true
-    })}>
-      <div className="wrapper">
-        <div className="close-layer" onClick={hideMobileMenu}></div>
-        <SideBar />
+import ccLogo from '../../assets/images/crown-castle-vector-logo-small.png'
 
-        <div className="main-panel">
-          <Header />
-          <Route exact path="/" component={MapsPage} />
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/table" component={Tables} />
-         { // <Route path="/components" component={Components} />
-          // <Route path="/profile" component={UserProfile} />
-          // <Route path="/forms" component={Forms} />
-          // <Route path="/charts" component={Charts} />
-          // <Route path="/calendar" component={Calendar} />
+class Main extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      loading: true
+    }
   }
-          <Footer />
+
+  componentDidMount() {
+    const component = this
+
+    setTimeout(() => component.setState({ loading: false }), 4000)
+  }
+
+  render() {
+    const {
+      mobileNavVisibility,
+      hideMobileMenu,
+      history
+    } = this.props
+
+    history.listen(() => {
+      if (mobileNavVisibility === true) {
+        hideMobileMenu();
+      }
+    })
+
+    if (this.state.loading) {
+      return <LoadingScreen
+        loading={true}
+        bgColor='#f1f1f1'
+        spinnerColor='#9ee5f8'
+        textColor='#676767'
+        logoSrc={ccLogo}
+        text='The place where possibility becomes reality'
+      > 
+      </LoadingScreen>
+    }
+
+    return (
+      <div className={cx({
+        'nav-open': mobileNavVisibility === true
+      })}>
+        <div className="wrapper">
+          <div className="close-layer" onClick={hideMobileMenu}></div>
+          <SideBar />
+
+          <div className="main-panel">
+            <Header />
+            <Route exact path="/" component={MapsPage} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/table" component={Tables} />
+          { // <Route path="/components" component={Components} />
+            // <Route path="/profile" component={UserProfile} />
+            // <Route path="/forms" component={Forms} />
+            // <Route path="/charts" component={Charts} />
+            // <Route path="/calendar" component={Calendar} />
+    }
+            <Footer />
+          </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 };
 
 const mapStateToProp = state => ({
