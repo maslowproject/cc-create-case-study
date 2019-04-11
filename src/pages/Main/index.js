@@ -37,7 +37,7 @@ class Main extends React.Component {
   componentDidMount() {
     const component = this
 
-    setTimeout(() => component.setState({ loading: false }), 4000)
+    setTimeout(() => component.setState({ loading: false }), 4500)
   }
 
   render() {
@@ -60,7 +60,6 @@ class Main extends React.Component {
         spinnerColor='#9ee5f8'
         textColor='#676767'
         logoSrc={ccLogo}
-        text='The place where possibility becomes reality'
       > 
       </LoadingScreen>
     }

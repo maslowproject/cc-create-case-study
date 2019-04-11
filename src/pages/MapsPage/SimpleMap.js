@@ -60,11 +60,13 @@ class SimpleMap extends React.Component {
           color: [255, 255, 255, 0]
         }
       },
-      url: "https://cohegis.houstontx.gov/cohgispub/rest/services/PD/Government_Boundaries_wm/MapServer/7"
+      url: "https://cohegis.houstontx.gov/cohgispub/rest/services/PD/Government_Boundaries_wm/MapServer/7",
+      title: 'Zip Codes'
     });
     
     var citylimitLayer = new FeatureLayer({
-      url: "https://cohegis.houstontx.gov/cohgispub/rest/services/PD/Government_Boundaries_wm/MapServer/0"
+      url: "https://cohegis.houstontx.gov/cohgispub/rest/services/PD/Government_Boundaries_wm/MapServer/0",
+      title: 'City Limits'
     });
 
     var schoolLayer = new FeatureLayer({ 
