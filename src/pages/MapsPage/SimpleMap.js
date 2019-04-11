@@ -101,7 +101,6 @@ class SimpleMap extends React.Component {
 
     this.setState({ map, view }, () => {
       loadModules([
-        'esri/layers/GraphicsLayer',
         'esri/widgets/Search',
         'esri/widgets/LayerList'
       ])

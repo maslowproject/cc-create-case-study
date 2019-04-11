@@ -23,7 +23,7 @@ class SideBar extends Component {
       <div className="sidebar" data-color={backgroundColor} data-image={backgroundImage}>
 
         <div className="brand">
-          <a href="http://jslancer.com" className="brand-name">
+          <a target="_blank" rel="noopener noreferrer" href="https://crowncastle.com" className="brand-name">
             <img src={ccLogo} alt="logo" className="logo" />
           </a>
 
